@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hôpital SoigneMoi!{% endblock %}
+
+{% block header %}
+    <h1>Bienvenue à l'Hôpital SoigneMoi</h1> {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    Bienvenue sur l'application officielle de l'Hôpital SoigneMoi. Nous sommes dévoués à fournir des soins de santé de qualité et à améliorer la vie de nos patients. Situé au cœur de Lille, notre établissement médical est fier de sa tradition d'excellence et de son engagement envers le bien-être de la communauté.<br />
+    <br />
+    <section id="about">
+        <h2>À propos de l'Hôpital SoigneMoi</h2>
+        <p>
+            Fondé en [Année de Fondation], l'Hôpital [Nom de l'Hôpital] est un établissement de premier plan dans le domaine de la santé. Nous mettons l'accent sur l'innovation, la compassion et l'expertise médicale pour assurer à nos patients les meilleurs résultats possibles. Notre équipe de professionnels de la santé hautement qualifiés travaille ensemble pour offrir des soins personnalisés et complets à chaque patient, dans un environnement accueillant et sécurisé.
+        </p>
+    </section>
+
+    <section id="services">
+        <h2>Prestations proposées</h2>
+        <p>
+            Notre hôpital propose une gamme complète de services médicaux et paramédicaux pour répondre à tous les besoins de santé de nos patients. Parmi nos prestations, vous trouverez :
+        </p>
+        <ul style="text-align:left;">
+            <li>Consultations médicales dans diverses spécialités, y compris la cardiologie, la pédiatrie, la chirurgie, la gynécologie, l'orthopédie, et bien d'autres.</li>
+            <li>Services d'urgence ouverts 24h/24 et 7j/7 pour une prise en charge rapide des situations médicales urgentes.</li>
+            <li>Examens d'imagerie médicale, tels que les radiographies, les échographies et les scanners, pour un diagnostic précis.</li>
+            <li>Chirurgie moderne et interventions médicales avancées réalisées par des chirurgiens expérimentés et compétents.</li>
+            <li>Services de réadaptation et de physiothérapie pour aider les patients à retrouver leur mobilité et leur indépendance après une maladie ou une blessure.</li>
+            <li>Soins palliatifs et accompagnement pour les patients atteints de maladies graves, ainsi que soutien aux familles.</li>
+        </ul>
+        <p>
+            Quels que soient vos besoins de santé, l'Hôpital SoigneMoi est là pour vous offrir des soins de qualité et un soutien attentionné à chaque étape de votre parcours médical.
+        </p>
+    </section>
+{% endblock %}
+
+{% block footer %}
+    <p>Pour plus d'informations sur nos services ou pour prendre rendez-vous, n'hésitez pas à nous contacter ou à utiliser notre application pour planifier votre visite. Nous sommes impatients de vous servir et de vous aider à atteindre une meilleure santé et un bien-être optimal.</p>
+    {{ parent() }}
+{% endblock %}

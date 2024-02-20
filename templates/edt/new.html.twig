@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EDT{% endblock %}
+
+{% block body %}
+    <h1>Create new EDT</h1>
+
+    {{ include('edt/_form.html.twig') }}
+
+    <a href="{{ path('app_e_d_t_index') }}">back to list</a>
+{% endblock %}

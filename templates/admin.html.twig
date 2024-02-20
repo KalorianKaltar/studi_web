@@ -1,0 +1,239 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hôpital SoigneMoi!{% endblock %}
+
+{#{% block stylesheets %}
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                header {
+                    background-color: #007bff;
+                    color: white;
+                    padding: 20px;
+                    text-align: center;
+                }
+
+                main {
+                    padding: 20px;
+                }
+
+                section {
+                    margin-bottom: 30px;
+                }
+
+                h1, h2 {
+                    margin-top: 0;
+                }
+
+                ul {
+                    
+                    padding: 0;
+                }
+
+                footer {
+                    background-color: #f8f9fa;
+                    padding: 10px;
+                    text-align: center;
+                }
+                
+                #calendar {
+                    max-width: 1100px;
+                    margin: 40px auto;
+                  }
+                  
+                  .popper,
+.tooltip {
+  position: absolute;
+  z-index: 9999;
+  background: #FFC107;
+  color: black;
+  width: 150px;
+  border-radius: 3px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+  padding: 10px;
+  text-align: center;
+}
+.style5 .tooltip {
+  background: #1E252B;
+  color: #FFFFFF;
+  max-width: 200px;
+  width: auto;
+  font-size: .8rem;
+  padding: .5em 1em;
+}
+.popper .popper__arrow,
+.tooltip .tooltip-arrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  position: absolute;
+  margin: 5px;
+}
+
+.tooltip .tooltip-arrow,
+.popper .popper__arrow {
+  border-color: #FFC107;
+}
+.style5 .tooltip .tooltip-arrow {
+  border-color: #1E252B;
+}
+.popper[x-placement^="top"],
+.tooltip[x-placement^="top"] {
+  margin-bottom: 5px;
+}
+.popper[x-placement^="top"] .popper__arrow,
+.tooltip[x-placement^="top"] .tooltip-arrow {
+  border-width: 5px 5px 0 5px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  bottom: -5px;
+  left: calc(50% - 5px);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.popper[x-placement^="bottom"],
+.tooltip[x-placement^="bottom"] {
+  margin-top: 5px;
+}
+.tooltip[x-placement^="bottom"] .tooltip-arrow,
+.popper[x-placement^="bottom"] .popper__arrow {
+  border-width: 0 5px 5px 5px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  top: -5px;
+  left: calc(50% - 5px);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.tooltip[x-placement^="right"],
+.popper[x-placement^="right"] {
+  margin-left: 5px;
+}
+.popper[x-placement^="right"] .popper__arrow,
+.tooltip[x-placement^="right"] .tooltip-arrow {
+  border-width: 5px 5px 5px 0;
+  border-left-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  left: -5px;
+  top: calc(50% - 5px);
+  margin-left: 0;
+  margin-right: 0;
+}
+.popper[x-placement^="left"],
+.tooltip[x-placement^="left"] {
+  margin-right: 5px;
+}
+.popper[x-placement^="left"] .popper__arrow,
+.tooltip[x-placement^="left"] .tooltip-arrow {
+  border-width: 5px 0 5px 5px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  right: -5px;
+  top: calc(50% - 5px);
+  margin-left: 0;
+  margin-right: 0;
+}
+            </style>
+        {% endblock %}#}
+ 
+{% block header %}
+    <h1>Hôpital SoigneMoi</h1> {{ parent() }}
+{% endblock %}
+        
+{% block content %}
+    <main id="container-dashboard">
+        <section>
+            <h2>Liste des médecins</h2>
+            <table id="medecins">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Spécialité</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%  for med in medecins %}
+                    <tr>
+                        <td><a href="{{ path('adminDashboard', {id: med.id}) }}">Dr. {{ med.prenom }} {{ med.nom }}</a></td>
+                        <td>{{ med.idspecialite.label }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+
+        <div id="calendar-holder"></div>
+    </main>
+                            
+                <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js" integrity="sha256-dHUNnePy81fXq4D/wfu7cPsEIP7zl6MvLb84jtZf+UY=" crossorigin="anonymous"></script>
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/locales-all.min.js'></script>
+        
+        
+<script src='https://unpkg.com/popper.js/dist/umd/popper.min.js'></script>
+        <script src='https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js'></script>
+        
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', () => {
+                var calendarEl = document.getElementById('calendar-holder');
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    locale: 'fr',
+                    selectable: true,
+                    eventOrderStrict:true,
+                    eventOrder:'groupId,-duration',
+                    eventDidMount: function(info) {
+                        var tooltip = new Tooltip(info.el, {
+                          title: info.event.extendedProps.description,
+                          placement: 'top',
+                          trigger: 'hover',
+                          container: 'body'
+                        });
+                      },
+                    eventClick: function(e) {
+                        if(e.event.extendedProps.customType == 'sejour') {
+                            let result = confirm("Préparer le séjour prévu du " + e.event.startStr + " au " + e.event.endStr);
+                            if(result !== true) {
+                                e.jsEvent.preventDefault();
+                            }
+                            {#(result || e.view.type.match(/^timeGrid/)) && r.unselect(),
+                            result && r.addEvent({
+                                title: result,
+                                start: e.start,
+                                end: e.end
+                            })#}
+                        }
+                    },
+                        
+                    eventSources: [
+                        {
+                            url: "{{ path('fc_load_events') }}",
+                            method: "POST",
+                            extraParams: {
+                                filters: JSON.stringify({})
+                            },
+                            failure: () => {
+                                // alert("There was an error while fetching FullCalendar!");
+                            },
+                        },
+                    ],
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+                    initialView: 'dayGridMonth',
+                    timeZone: 'local',
+                });
+                calendar.render();
+            });
+        </script>
+        {% endblock %}

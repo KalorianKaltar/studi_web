@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EDT{% endblock %}
+
+{% block content %}
+    <h1>Préparer le séjour du patient</h1>
+ 
+    {% for error in errors %}
+        {{ error }}
+    {% endfor %}
+    
+{{ form_start(form) }}   
+<table>
+<tr><th>Date</th><th>Medecin</th></tr>
+    {% for edt in form.collection %}
+    <tr>
+        <td>{{ form_widget(edt.date) }}{{ form_widget(edt.id_sejour) }}</td>
+        <td>{{ form_widget(edt.id_medecin) }}</td>
+    {% endfor %}
+    {{ form_rest(form) }}
+</table>
+    <button type="submit">Enregistrer</button>
+{{ form_end(form) }}
+    <a href="{{ path('app_e_d_t_index') }}">back to list</a>
+{% endblock %}

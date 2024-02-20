@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+            <script 
+                src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js" 
+                integrity="sha256-dHUNnePy81fXq4D/wfu7cPsEIP7zl6MvLb84jtZf+UY="
+                crossorigin="anonymous">
+            </script>
+        {% endblock %}
+        
+        <style>
+            .hidden-field {
+                display:none;
+            }
+        </style>
+        
+    </head>
+    <body>
+        {% block body %}
+{#            {{ form(form) }}#}
+
+                    {% include('menu.html.twig') %}
+                <div id="calendar-holder"></div>
+
+{#            <br />FORMULAIRE SEJOUR :<br />_________________________________<br />#}
+            {#{{ form_start(form, { attr: { id: 'sejour_form' }}) }}
+                {{ form_label(form.motif) }}
+                {{ form_widget(form.motif) }}
+                
+                {{ form_label(form.id_specialite) }}
+                {{ form_widget(form.id_specialite) }}
+                
+
+                {{ form_label(form.id_medecin) }}
+                {{ form_widget(form.id_medecin) }}
+                
+                {{ form_widget(form.date_debut, { 'attr': { 'class' : 'hidden-field' } }) }}
+                {{ form_widget(form.date_fin, { 'attr': { 'class' : 'hidden-field' } }) }}
+
+                
+                {{ form_rest(form) }}
+
+                <div class="my-custom-class-for-errors">
+                    {{ form_errors(form) }}
+                </div>
+
+                <button type="submit">Enregistrer</button>
+            {{ form_end(form) }}#}
+            
+            {#<script>
+            const form = document.getElementById('sejour_form');
+            const form_select_specialite = document.getElementById('sejour_id_specialite');
+            const form_select_medecin = document.getElementById('sejour_id_medecin');
+
+            const updateForm = async (data, url, method) => {
+              const req = await fetch(url, {
+                method: method,
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'charset': 'utf-8'
+                }
+              });
+
+              const text = await req.text();
+
+              return text;
+            };
+
+            const parseTextToHtml = (text) => {
+              const parser = new DOMParser();
+              const html = parser.parseFromString(text, 'text/html');
+
+              return html;
+            };
+
+            const changeOptions = async (e) => {
+                const requestBody = {};
+              requestBody[e.target.getAttribute('name')] = e.target.value;
+              const updateFormResponse = await updateForm(requestBody, form.getAttribute('action'), form.getAttribute('method'));
+              const html = parseTextToHtml(updateFormResponse);
+
+                
+                if(html != null) {
+                    const new_form_select_position = html.getElementById('sejour_id_medecin');
+                    if(new_form_select_position != null) {
+                        form_select_medecin.innerHTML = new_form_select_position.innerHTML;
+                    } else {
+                        alert('new_form_select_position error');
+                    }
+                } else {
+                    alert('html error');
+                }
+            };
+
+            form_select_specialite.addEventListener('change', (e) => changeOptions(e));
+        </script>#}
+        
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js" integrity="sha256-dHUNnePy81fXq4D/wfu7cPsEIP7zl6MvLb84jtZf+UY=" crossorigin="anonymous"></script>
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/locales-all.min.js'></script>
+        
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', () => {
+                var calendarEl = document.getElementById('calendar-holder');
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    locale: 'fr',
+                    selectable: true,
+                    eventOrderStrict:true,
+                    eventOrder:'groupId,-duration',
+                    eventClick: function(e) {
+                        if(e.event.extendedProps.customType == 'sejour') {
+                            let result = confirm("Préparer le séjour prévu du " + e.event.startStr + " au " + e.event.endStr);
+                            if(result !== true) {
+                                e.jsEvent.preventDefault();
+                            }
+                            {#(result || e.view.type.match(/^timeGrid/)) && r.unselect(),
+                            result && r.addEvent({
+                                title: result,
+                                start: e.start,
+                                end: e.end
+                            })#}
+                        }
+                    },
+                    eventSources: [
+                        {
+                            url: "{{ path('fc_load_events') }}",
+                            method: "POST",
+                            extraParams: {
+                                filters: JSON.stringify({})
+                            },
+                            failure: () => {
+                                // alert("There was an error while fetching FullCalendar!");
+                            },
+                        },
+                    ],
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+                    initialView: 'dayGridMonth',
+                    timeZone: 'local',
+                });
+                calendar.render();
+            });
+        </script>
+        {% endblock %}
+    </body>
+</html>

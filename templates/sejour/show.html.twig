@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    <h1>Sejour</h1> {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Date_debut</th>
+                <td>{{ sejour.dateDebut ? sejour.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_fin</th>
+                <td>{{ sejour.dateFin ? sejour.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Motif</th>
+                <td>{{ sejour.motif }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('patientSejour') }}">Retour</a>
+
+{% endblock %}

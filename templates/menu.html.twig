@@ -1,0 +1,26 @@
+<nav id="menu">
+    <ul>
+        <li><a href="{{ path('home') }}">Accueil</a></li>
+        {% if app.user %}
+            {% if is_granted("ROLE_PATIENT") %}
+{#                <li><a href="{{ path('patientProfile') }}">Mon Profil</a></li>#}
+                <li><a href="{{ path('patientHistorique') }}">Mon Historique</a></li>
+                <li><a href="{{ path('patientSejour') }}">Séjour</a></li>
+            {% endif %}
+            {% if is_granted("ROLE_ADMIN") %}
+                <li><a href="{{ path('adminIndex') }}">Dashboard</a></li>
+            {% endif %}
+        
+            <li><a href="{{ path('app_logout') }}">Déconnexion ({{ app.user.prenom }} {{ app.user.nom }})</a></li>
+            
+            {# DEBUG 
+            {% for role in app.user.roles %}
+            {{ role }}
+            {% endfor %}
+            #}
+        {% else %}
+            <li><a href="{{ path('app_utilisateur_new') }}">S'enregister</a></li>
+            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+        {% endif %}           
+    </ul>
+</nav>

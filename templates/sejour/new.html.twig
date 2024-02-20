@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Sejour{% endblock %}
+
+{% block body %}
+    <h1>Create new Sejour</h1>
+
+    {{ include('sejour/_form.html.twig') }}
+
+    <a href="{{ path('app_sejour_index') }}">back to list</a>
+{% endblock %}

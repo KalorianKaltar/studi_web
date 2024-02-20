@@ -1,0 +1,271 @@
+/*body {
+    background-color: #17242C;
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.song-list i {
+    margin-top: 7px;
+}
+
+.song-list a {
+    color: #fff;
+}
+
+.song-details {
+    background-color: #222F36;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.genre-list li {
+    margin-right: 5px;
+}
+
+.mixed-vinyl-container {
+    background: rgb(23,36,44);
+    background: linear-gradient(180deg, rgba(23,36,44,1) 1%, rgba(34,47,54,1) 97%);
+    border-radius: 5px;
+
+}*/
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding-top: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h1, h2 {
+    margin-top: 0;
+}
+
+ul {
+
+    padding: 0;
+}
+
+footer {
+    position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem; 
+    
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+}
+
+.hidden-field {
+    display:none;
+}
+
+#menu {
+    width:100%;
+    margin:0 auto;
+    /*background-color:white;*/
+    position:sticky;
+    top:0px;
+}
+
+#menu ul {
+    list-style-type: none;
+}
+
+#menu ul li {
+    float:left;
+    width:25%;
+    text-align:center;
+}
+
+#menu ul::after {
+    content:"";
+    display:table;
+    clear:both;
+}
+
+#menu ul li a {
+    display:block;
+    text-decoration:none;
+    color:white;
+    border-bottom:2px solid transparent;
+    padding:10px 0px;
+}
+
+#menu ul li a:hover {
+    color:orange;
+    border-bottom:2px solid gold;
+}
+
+#login-container{
+ width:400px;
+ margin:0 auto;
+ margin-top:10%;
+}
+
+form.login {
+ width:100%;
+ padding: 30px;
+ border: 1px solid #f1f1f1;
+ background: #fff;
+ box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+form.login input[type=email], form.login input[type=password] {
+ width: 100%;
+ padding: 12px 20px;
+ margin: 8px 0;
+ display: inline-block;
+ border: 1px solid #ccc;
+ box-sizing: border-box;
+}
+
+form.login button[type=submit] {
+ background-color: #007bff;
+ color: white;
+ padding: 14px 20px;
+ margin: 8px 0;
+ border: none;
+ cursor: pointer;
+ width: 100%;
+}
+
+form.login button[type=submit]:hover {
+ background-color: white;
+ color: #007bff;
+ border: 1px solid #007bff;
+}
+
+main#container-historique table#historique-sejours {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+main#container-historique table#historique-sejours td, main#container-historique table#historique-sejours th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+main#container-historique table#historique-sejours tr:nth-child(even){background-color: #f2f2f2;}
+
+main#container-historique table#historique-sejours tr:hover {background-color: #ddd;}
+
+main#container-historique table#historique-sejours th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #007bff;
+  color: white;
+}
+
+main#container-sejour {
+    display:flex;
+    padding:0 20px 20px 20px;
+    max-width: 1000px;
+}
+
+form#sejour-form {
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-right: 60px;
+    width:230px;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+form#sejour-form input[type=text], form#sejour-form select, form#sejour-form input[type=date] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+form#sejour-form button[type=submit] {
+    background-color: #007bff;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+main#container-sejour div#calendar-holder {
+    background: #fff;
+    border-top: 4px solid #fac863;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    flex-grow: 1;
+    margin-top: 36px;
+    padding-top: 85px;
+    position: relative;
+}
+
+
+main#container-dashboard {
+    display:flex;
+    padding:0 20px 20px 20px;
+    max-width: 1000px;
+}
+
+main#container-dashboard div#calendar-holder {
+    background: #fff;
+    border-top: 4px solid #fac863;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    flex-grow: 1;
+    margin-top: 36px;
+    padding-top: 85px;
+    position: relative;
+}
+
+main#container-dashboard table#medecins {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+main#container-dashboard table#medecins td, main#container-dashboard table#medecins th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+main#container-dashboard table#medecins tr:nth-child(even){background-color: #f2f2f2;}
+
+main#container-dashboard table#medecins tr:hover {background-color: #ddd;}
+
+main#container-dashboard table#medecins th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #007bff;
+  color: white;
+}
+
+main#container-dashboard section {
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-right: 60px;
+    width:230px;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
