@@ -2,12 +2,12 @@
 # SoigneMoi
 
 ## Prérequis
-PHP 8.2
-Symfony 7.0.3
-Symfony CLI 5.8.6
-Composer 2.6.6
-SQLite 3.45.1
-OpenSSL
+	PHP 8.2
+	Symfony 7.0.3
+	Symfony CLI 5.8.6
+	Composer 2.6.6
+	SQLite 3.45.1
+	OpenSSL
 
 ## Instructions
 1.Cloner le dépôt sur la machine locale :
