@@ -20,6 +20,18 @@ class SejourRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Sejour::class);
     }
+    
+    public function findAllByToday() {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT s from App\Entity\Sejour s WHERE s.date_debut = :date1 or s.date_fin = :date2'
+        )
+                ->setParameter('date1', new \DateTime('today'))
+                ->setParameter('date2', new \DateTime('today'));
+        
+        
+        return $query->getResult();
+    }
 
 //    /**
 //     * @return Sejour[] Returns an array of Sejour objects
