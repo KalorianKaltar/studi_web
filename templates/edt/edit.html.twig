@@ -2,12 +2,12 @@
 
 {% block title %}Edit EDT{% endblock %}
 
-{% block body %}
-    <h1>Edit EDT</h1>
+{% block content %}
+    <h1>Edition EDT</h1>
 
     {{ include('edt/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_e_d_t_index') }}">back to list</a>
+    <a href="{{ path('adminIndex') }}">Retour au Dashboard</a>
 
-    {{ include('edt/_delete_form.html.twig') }}
+{#    {{ include('edt/_delete_form.html.twig') }}#}
 {% endblock %}

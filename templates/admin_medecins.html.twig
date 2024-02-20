@@ -1,41 +1,19 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+{% extends 'base.html.twig' %}
 
-        {% block javascripts %}
-        {% endblock %}
-        
-        <style>
-            .hidden-field {
-                display:none;
-            }
-        </style>
-        
-    </head>
-    <body>
-        {% block body %}
-{#            {{ form(form) }}#}
-            <br />FORMULAIRE MEDECINS :<br />_________________________________<br />
-            {{ form_start(form, { attr: { id: 'sejour_form' }}) }}
+{% block title %}Créer Nouveau Médecin{% endblock %}
+
+{% block content %}
+    {{ form_start(form, { attr: { id: 'sejour_form' }}) }}
                 
-                {{ form_label(form.id_specialite) }}
-                {{ form_widget(form.id_specialite) }}
-                
-                {{ form_rest(form) }}
+        {{ form_label(form.id_specialite) }}
+        {{ form_widget(form.id_specialite) }}
 
-                <div class="my-custom-class-for-errors">
-                    {{ form_errors(form) }}
-                </div>
+        {{ form_rest(form) }}
 
-                <button type="submit">Enregistrer</button>
-            {{ form_end(form) }}
-            
-            <a href="{{ path('adminIndex') }}">Retour</a>
-        {% endblock %}
-    </body>
-</html>
+        <div class="my-custom-class-for-errors">
+            {{ form_errors(form) }}
+        </div>
+
+        <button type="submit">Enregistrer</button>
+    {{ form_end(form) }}
+{% endblock %}
